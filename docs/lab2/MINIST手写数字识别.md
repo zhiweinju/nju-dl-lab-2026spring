@@ -116,7 +116,7 @@ def net(X):
 
 
 ```python
-loss = torch.nn.CrossEntropyLoss()
+loss = torch.nn.CrossEntropyLoss(reduction='mean')
 ```
 
 定义优化器，这里依然采用最简单的随机梯度下降方法
@@ -128,8 +128,9 @@ def sgd(params, lr, batch_size):
     with torch.no_grad():
         for param in params:
             # 对每个参数按照其梯度以及学习率进行更新。
-            param -= lr * param.grad
-            # 我们希望根据新的数据重新计算梯度，而不是累加之前的梯度。
+            # TODO 梯度下降更新参数 
+            # 提示:计算损失时已经计算量了平均损失
+            
             param.grad.zero_()
 ```
 
@@ -140,8 +141,9 @@ def sgd(params, lr, batch_size):
 def evaluate_accuracy(dataloader, net):
     acc_sum, n = 0.0, 0
     for X, y in dataloader:
-        #TODO
-        #TODO
+        y_hat = net(X)
+        acc_sum += (y_hat.argmax(dim=1) == y).float().sum().item()
+        n += y.shape[0]
     return acc_sum / n
 ```
 
@@ -171,9 +173,9 @@ def train(net, train_iter, test_iter, loss, num_epochs, batch_size, params=None,
                 sgd(params, lr, batch_size)  #梯度下降
             else:
                 optimizer.step()  #更新参数
-                
-            # 计算准确率 TODO
-            # 计算准确率 TODO
+            
+            train_l_sum += l.item()
+            train_acc_sum += (y_hat.argmax(dim=1) == y).sum().item()
             n += y.shape[0]
         test_acc = evaluate_accuracy(test_iter, net)
         print('epoch %d, loss %.4f, train acc %.3f, test acc %.3f'
@@ -208,13 +210,12 @@ num_inputs, num_outputs, num_hiddens = 784, 10, 256
 class MLP(nn.Module):
     def __init__(self, num_inputs, num_outputs, num_hiddens):
         super(MLP, self).__init__()
-        self.f1 = nn.Linear(num_inputs, num_hiddens) # 输入层 -> 隐藏层
-        self.f2 = nn.Linear(num_hiddens, num_outputs) # 隐藏层 -> 输出层
+        # TODO 定义两个线性层结构
         
     def forward(self, x):
         x = x.view(-1, num_inputs) # 将每张原始图像改成长度为num_inputs的向量
-        x = F.relu(self.f1(x)) # 使用PyTorch中的ReLU激活函数
-        x = self.f2(x)
+        # TODO 定义前向传播过程
+        
         return x
 ```
 
@@ -234,8 +235,9 @@ optimizer = torch.optim.SGD(net.parameters(), lr=0.1)
 def evaluate_accuracy(dataloader, net):
     acc_sum, n = 0.0, 0
     for X, y in dataloader:
-        #TODO
-        #TODO
+        y_hat = net(X)
+        acc_sum += (y_hat.argmax(dim=1) == y).float().sum().item()
+        n += y.shape[0]
     return acc_sum / n
 ```
 
@@ -256,13 +258,11 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=64, shuffle=False)
 class MLP(nn.Module):
     def __init__(self, num_inputs, num_outputs, num_hiddens):
         super(MLP, self).__init__()
-        self.f1 = nn.Linear(num_inputs, num_hiddens) # 输入层 -> 隐藏层
-        self.f2 = nn.Linear(num_hiddens, num_outputs) # 隐藏层 -> 输出层
+        # TODO 定义两个线性层
         
     def forward(self, x):
         x = x.view(-1, num_inputs) # 将每张原始图像改成长度为num_inputs的向量
-        x = F.relu(self.f1(x)) # 使用PyTorch中的ReLU激活函数
-        x = self.f2(x)
+        # TODO 定义前向传播过程
         return x
 
 
