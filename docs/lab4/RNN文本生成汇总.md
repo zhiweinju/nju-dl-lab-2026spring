@@ -35,7 +35,7 @@ import os
 
 
 ```python
-data_path = "ag_news文件夹保存路径"
+data_path = "ag_news"
 dataset = load_from_disk(data_path)
 
 # 提取所有文本数据
@@ -59,37 +59,37 @@ for text in train_text:
     counter.update(tokenize(text))
 ```
 
-词元的类型是字符串，而模型需要的输入是数字，因此这种类型不方便模型使用。 现在，让我们构建一个字典，通常也叫做词表（vocabulary）， 用来将字符串类型的词元映射到从0开始的数字索引中。
-首先，定义特殊标记（如 <unk> 代表未知词，<pad> 用于序列填充，<bos>表示序列开始，<eos>表示序列结束）。然后，从 Counter 统计的单词频率列表中提取所有单词，并按频率排序，将其添加到词汇表中。最后，使用 enumerate 为每个单词分配唯一索引，创建一个 word-to-index 映射，方便将文本转换为数值序列供深度学习模型使用。
+词元的类型是字符串，而模型需要的输入是数字，因此这种类型不方便模型使用。现在，让我们构建一个字典，通常也叫做词表（vocabulary），用来将字符串类型的词元映射到从0开始的数字索引中。
+首先，定义特殊标记（如 <unk> 代表未知词，<pad> 用于序列填充，<bos>表示序列开始，<eos>表示序列结束）。然后，从 Counter 统计的单词频率列表中提取所有单词，并按频率排序，将出现次数少于2次的低频词过滤掉，以控制词表规模。最后，使用 enumerate 为每个单词分配唯一索引，创建一个 word-to-index 映射，方便将文本转换为数值序列供深度学习模型使用。
 
 ```python
 # 生成词汇表，包含特殊 token
 special_tokens = ["<unk>", "<pad>", "<bos>", "<eos>"]
-vocab = special_tokens + [word for word, _ in counter.most_common()]
+min_freq = 2
+vocab = special_tokens + [word for word, freq in counter.most_common() if freq >= min_freq]
 vocab_dict = {word: idx for idx, word in enumerate(vocab)}
 ```
 
-打印词汇表大小，前10个高频词元及其索引。
+打印词汇表大小，并输出前15个高频词元的“词元-频次-索引”三元组。
 
 
 ```python
 print("词汇表大小:", len(vocab_dict))
-print("前 10 个最常见的单词及其索引:")
-#TODO:打印前10个高频词元及其索引
+print("前 15 个高频词元（词元, 频次, 索引）:")
+# TODO: 打印前15个高频词元，要求每行同时输出词元、出现频次和它在 vocab_dict 中的索引
 ```
 
 
 !!! question "思考题"
-    思考题1：在文本处理中，为什么需要对文本进行分词（Tokenization）？
+    思考题1：当前实验使用 `min_freq = 2` 过滤低频词。请结合你得到的词汇表大小和生成结果中 `<unk>` 的出现情况，分析低频词过滤对词表规模、训练稳定性和生成质量的影响。如果把 `min_freq` 改成 5，你预期会发生什么？
 
-    思考题2：在深度学习中，为什么不能直接使用单词而需要将其转换为索引？
+    思考题2：词表里加入了 `<unk>`、`<pad>`、`<bos>`、`<eos>` 四类特殊词元。请说明它们各自的作用，并分析在当前实验代码中哪些特殊词元真正参与了训练，哪些只是预留。
 
 
 ## **2. RNN文本生成实验**
 
 !!! abstract "RNN文本生成概述"
-    使用RNN进行文本生成任务的核心思想是 根据前面的文本预测下一个单词，然后将预测出的单词作为输入，循环迭代生成完整文本。本实验以AG News 数据为例，给定前100个单词作为输入，预测下一个单词，实现文本生成任务。
-
+    使用RNN进行文本生成任务的核心思想是根据前面的文本预测下一个单词，然后将预测出的单词作为输入，循环迭代生成完整文本。本实验以 AG News 数据为例，给定前80个单词作为输入，预测下一个单词，实现文本生成任务。与往年直接从完整 softmax 分布中采样不同，这一版要求你实现基于 temperature 和 top-k 的采样函数，再用于文本生成。训练时额外加入梯度裁剪，以减轻梯度爆炸。
 !!! warning "RNN的局限性"
     RNN的局限性在于难以记住长距离上下文，容易导致生成内容缺乏连贯性，且可能出现重复或模式化的文本。
 
@@ -115,7 +115,7 @@ import os
 读取数据集
 
 ```python
-data_path = "ag_news文件夹保存路径"
+data_path = "ag_news"
 dataset = load_from_disk(data_path)
 
 # 提取所有文本数据
@@ -141,7 +141,8 @@ for text in train_text:
 
 # 生成词汇表，包含特殊 token
 special_tokens = ["<unk>", "<pad>", "<bos>", "<eos>"]
-vocab = special_tokens + [word for word, _ in counter.most_common()]
+min_freq = 2
+vocab = special_tokens + [word for word, freq in counter.most_common() if freq >= min_freq]
 vocab_dict = {word: idx for idx, word in enumerate(vocab)}
 
 ```
@@ -149,15 +150,17 @@ vocab_dict = {word: idx for idx, word in enumerate(vocab)}
 
 ### 训练数据生成
 
-将文本数据转换为数值表示，并按100个单词作为输入、下一个单词作为目标的方式构造训练数据。最终生成 X_train（输入序列）和 Y_train（预测目标），用于 RNN 训练文本生成模型。
+将文本数据转换为数值表示，并按80个单词作为输入、下一个单词作为目标的方式构造训练数据。最终生成 X_train（输入序列）和 Y_train（预测目标），用于 RNN 训练文本生成模型。
 
 ```python
+
+context_len = 80
 
 def numericalize(text):
     return torch.tensor([vocab_dict.get(word, vocab_dict["<unk>"]) for word in tokenize(text)], dtype=torch.long)
 
-# 生成训练数据（输入 100 个词，预测下一个词）
-def create_data(text_list, seq_len=100):
+# 生成训练数据（输入 80 个词，预测下一个词）
+def create_data(text_list, seq_len=context_len):
     X, Y = [], []
     for text in text_list:
         token_ids = numericalize(text)
@@ -169,7 +172,7 @@ def create_data(text_list, seq_len=100):
     return torch.stack(X), torch.tensor(Y)
 
 # 生成训练数据
-X_train, Y_train = create_data(train_text, seq_len=100)
+X_train, Y_train = create_data(train_text, seq_len=context_len)
 
 
 # 创建 DataLoader
@@ -180,7 +183,7 @@ train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, sh
 ```
 
 !!! question "思考题"
-    思考题3：如果不打乱训练集，会对生成任务有什么影响？
+    思考题3：固定其余设置不变，将 `context_len` 改成一个不同的值（例如 40 或 100）并做一次对比。请分析训练样本数量、训练速度和生成结果会发生什么变化。
 
 
 ### RNN 模型构建
@@ -227,12 +230,11 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 RNN 训练过程
 
 ```python
-def train_model(model, train_loader, epochs=5):
+def train_model(model, train_loader, epochs=20):
     model.train()# 将模型设置为训练模式
     for epoch in range(epochs):
         total_loss = 0
         progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1}/{epochs}")# 使用 tqdm 创建进度条
-        epoch_grad_norm = None
 
         for X_batch, Y_batch in progress_bar:
             X_batch, Y_batch = X_batch.to(device), Y_batch.to(device)# 将数据移动到指定设备（GPU/CPU）
@@ -241,6 +243,7 @@ def train_model(model, train_loader, epochs=5):
             output, _ = model(X_batch)# 前向传播，计算模型输出
             loss = criterion(output, Y_batch) # 计算损失函数值
             loss.backward()# 反向传播，计算梯度
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0) # 梯度裁剪，减轻梯度爆炸
 
             optimizer.step() # 更新模型参数
             total_loss += loss.item()# 累加当前 batch 的损失值
@@ -255,10 +258,17 @@ train_model(model, train_loader, epochs=20)
 
 ### RNN 模型测试
 
-RNN 生成文本测试
+RNN 生成文本测试。为避免生成阶段完全依赖默认的 `torch.multinomial` 调用，下面要求你先补全一个 `sample_next_token` 函数，再在三个模型的生成阶段统一复用它。
 
 ```python
-def generate_text(model, start_text, num_words=100, temperature=1.0):
+def sample_next_token(logits, temperature=0.7, top_k=8):
+    # TODO 1: 使用 temperature 对 logits 做缩放
+    # TODO 2: 只保留概率最高的 top_k 个候选词
+    # TODO 3: 在 top_k 候选集合内完成采样，并返回最终的词表索引
+    pass
+
+
+def generate_text(model, start_text, num_words=60, temperature=0.7, top_k=8):
     model.eval()# 将模型设置为评估模式，禁用 dropout 和 batch normalization
     words = tokenize(start_text)# 对输入文本进行分词，获取初始词列表
     input_seq = numericalize(start_text).unsqueeze(0).to(device)
@@ -270,13 +280,8 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
         with torch.no_grad(): # 在推理时关闭梯度计算，提高效率
             output, hidden = model(input_seq, hidden)# 前向传播，获取模型输出和新的隐藏状态
 
-        # 计算 softmax，并应用温度系数
-        logits = output.squeeze(0) / temperature # 对 logits 除以 temperature 调节概率分布的平滑度
-        probs = F.softmax(logits, dim=-1) # 计算 softmax 得到概率分布
-
-        # 采样新词
-        predicted_id = torch.multinomial(probs, num_samples=1).item()
-        # 基于概率分布 随机采样一个词的索引
+        logits = output.squeeze(0)
+        predicted_id = sample_next_token(logits, temperature=temperature, top_k=top_k)
 
         next_word = vocab[predicted_id]  # 从词表中查找对应的单词
         words.append(next_word)# 将生成的单词添加到文本列表中
@@ -290,11 +295,11 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
 # 生成文本
 print("\nGenerated Text:")
 test_text = dataset["test"][1]["text"]
-# 取前 100 个单词作为前缀
-test_prefix = " ".join(test_text.split()[:100])
+# 取前 80 个单词作为前缀
+test_prefix = " ".join(test_text.split()[:context_len])
 
-# 让模型基于该前缀生成 100 个词
-generated_text = generate_text(model, test_prefix, 100, temperature=0.8)
+# 让模型基于该前缀生成 60 个词
+generated_text = generate_text(model, test_prefix, 60, temperature=0.7, top_k=8)
 
 print("\n🔹 模型生成的文本：\n")
 print(generated_text)
@@ -309,9 +314,7 @@ print(generated_text)
 **2. 数学定义**
 
 假设一个句子由$N$个单词组成：
-
-$$W=(w_1,w_2,...,w_N)L_{total}(\mathbf{w}, b) = L_{original}(\mathbf{w}, b) + \frac{\lambda}{2} \|\mathbf{w}\|^2$$
-
+$$W=(w_1,w_2,...,w_N)$$
 模型给出的概率为：
 
 $$P(W)=P(w_1,w_2,...,w_N)=P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)...P(w_N|w_1,...,w_{N-1})$$
@@ -341,7 +344,7 @@ $$
 下面请你按照要求补全计算困惑度的代码
 
 ```python
-def compute_perplexity(model, test_text, vocab_dict, seq_len=100):
+def compute_perplexity(model, test_text, vocab_dict, seq_len=context_len):
     """
     计算给定文本的困惑度（Perplexity, PPL）
 
@@ -349,7 +352,7 @@ def compute_perplexity(model, test_text, vocab_dict, seq_len=100):
     :param test_text: 需要评估的文本
     :param vocab_dict: 词汇表（用于转换文本到索引）
     :param seq_len: 评估时的窗口大小
-    :return: PPL 困惑度
+    :return: (PPL 困惑度, 实际参与评估的 token 数)
     """
     model.eval()  # 设为评估模式
     words = test_text.lower().split()
@@ -359,47 +362,49 @@ def compute_perplexity(model, test_text, vocab_dict, seq_len=100):
 
     # 计算 PPL
     total_log_prob = 0
-    num_tokens = len(token_ids) - 1  # 预测 num_tokens 次
+    evaluated_tokens = 0
 
     with torch.no_grad():
-        for i in range(num_tokens):
+        for i in range(len(token_ids) - 1):
             """遍历文本的每个 token，计算其条件概率，最后累加log概率"""
             input_seq = token_ids[max(0, i - seq_len):i].unsqueeze(0).to(device)  # 获取前 seq_len 个单词
             if input_seq.shape[1] == 0:  # 避免 RNN 输入空序列
                 continue
-            
+
             target_word = token_ids[i].unsqueeze(0).to(device)  # 目标单词
 
             # TODO: 前向传播，预测下一个单词的 logits
             # TODO: 计算 softmax 并取 log 概率
             # TODO: 取目标词的对数概率
             # TODO: 累加 log 概率      
+            # TODO: 累加实际参与预测的 token 数
 
-    avg_log_prob = total_log_prob / num_tokens  # 计算平均 log 概率
+    avg_log_prob = total_log_prob / evaluated_tokens  # 计算平均 log 概率
     perplexity = torch.exp(torch.tensor(-avg_log_prob)) # 计算 PPL，公式 PPL = exp(-avg_log_prob)
 
-    return perplexity.item()
+    return perplexity.item(), evaluated_tokens
 
 
-# 示例用法
-ppl = compute_perplexity(model, generated_text, vocab_dict)
-print(f"Perplexity (PPL): {ppl:.4f}")
+# 示例用法：在真实测试文本上计算 PPL
+ppl, evaluated_tokens = compute_perplexity(model, test_text, vocab_dict, seq_len=context_len)
+print(f"Perplexity (PPL): {ppl:.4f}, evaluated_tokens: {evaluated_tokens}")
 ```
 
 
 
 !!! question "思考题"
-    思考题4：假设你在RNN和LSTM语言模型上分别计算了困惑度，发现RNN的PPL更低。这是否意味着RNN生成的文本一定更流畅自然？如果不是，在什么情况下这两个困惑度可以直接比较？
+    思考题4：结合你自己生成的文本片段，说明为什么更低的 PPL 不一定意味着生成文本一定更自然。回答时请至少引用一段你实验中实际生成的文本。
 
-    思考题5：困惑度是不是越低越好？
+    思考题5：当前代码是在真实测试文本上计算 PPL。如果改为在模型自己生成的文本上计算，会带来什么偏差？
+
+    思考题6：保持模型参数不变，只修改 `temperature` 和 `top_k`。请至少比较两组设置，分析生成文本在保守性、多样性和重复现象上的变化。
 
 
 ## **3. LSTM和GRU文本生成实验**
 
 !!! abstract "LSTM文本生成概述"
-    LSTM（Long Short-Term Memory）是一种改进的 RNN，能够通过 门控机制（遗忘门、输入门、输出门） 有效捕捉长期依赖关系，防止梯度消失和梯度爆炸问题，使其在处理长序列任务时比普通 RNN 更强大。
-    本实验依旧以AG News 数据为例，给定前100个单词作为输入，预测下一个单词，实现文本生成任务。
-
+    LSTM（Long Short-Term Memory）是一种改进的 RNN，能够通过门控机制（遗忘门、输入门、输出门）有效捕捉长期依赖关系，防止梯度消失和梯度爆炸问题，使其在处理长序列任务时比普通 RNN 更强大。
+    本实验依旧以AG News 数据为例，给定前80个单词作为输入，预测下一个单词，实现文本生成任务，并保留梯度裁剪。
 
 ![示例图片](pics/lstm.png)
 
@@ -442,12 +447,11 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 LSTM 训练过程
 
 ```python
-def train_model(model, train_loader, epochs=5):
+def train_model(model, train_loader, epochs=20):
     model.train()
     for epoch in range(epochs):
         total_loss = 0
         progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1}/{epochs}")
-        epoch_grad_norm = None
 
         for X_batch, Y_batch in progress_bar:
             X_batch, Y_batch = X_batch.to(device), Y_batch.to(device)
@@ -456,6 +460,7 @@ def train_model(model, train_loader, epochs=5):
             output, _ = model(X_batch)
             loss = criterion(output, Y_batch)
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
             optimizer.step()
             total_loss += loss.item()
@@ -469,10 +474,10 @@ train_model(model, train_loader, epochs=20)
 
 ### LSTM 模型测试
 
-LSTM 生成文本测试
+LSTM 生成文本测试，继续复用 `sample_next_token`。
 
 ```python
-def generate_text(model, start_text, num_words=100, temperature=1.0):
+def generate_text(model, start_text, num_words=60, temperature=0.7, top_k=8):
     model.eval()
     words = tokenize(start_text)
     input_seq = numericalize(start_text).unsqueeze(0).to(device)
@@ -482,12 +487,8 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
         with torch.no_grad():
             output, hidden = model(input_seq, hidden)
 
-        # 计算 softmax，并应用温度系数
-        logits = output.squeeze(0) / temperature
-        probs = F.softmax(logits, dim=-1)
-
-        # 采样新词
-        predicted_id = torch.multinomial(probs, num_samples=1).item()
+        logits = output.squeeze(0)
+        predicted_id = sample_next_token(logits, temperature=temperature, top_k=top_k)
 
         next_word = vocab[predicted_id]
         words.append(next_word)
@@ -500,26 +501,25 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
 # 生成文本
 print("\nGenerated Text:")
 test_text = dataset["test"][1]["text"]
-# 取前 100 个单词作为前缀
-test_prefix = " ".join(test_text.split()[:100])
+# 取前 80 个单词作为前缀
+test_prefix = " ".join(test_text.split()[:context_len])
 
-# 让模型基于该前缀生成 100 个词
-generated_text = generate_text(model, test_prefix, 100, temperature=0.8)
+# 让模型基于该前缀生成 60 个词
+generated_text = generate_text(model, test_prefix, 60, temperature=0.7, top_k=8)
 print("\n🔹 模型生成的文本：\n")
 print(generated_text)
 ```
 
-借助RNN文本生成任务中计算困惑度的函数，计算一下lstm在generated_text上的困惑度。
+借助 RNN 文本生成任务中计算困惑度的函数，在真实测试文本上计算一下 LSTM 的困惑度，并同时报告 `evaluated_tokens`。生成时继续复用 `sample_next_token`。
 
 !!! question "思考题"
-    思考题6：观察一下RNN和LSTM训练过程中loss的变化，并分析一下造成这种现象的原因。
+    思考题7：观察 RNN 和 LSTM 训练过程中 loss 的变化，并各截取一段生成结果进行比较，分析二者在长距离依赖建模上的差异。
 
 
 
 !!! abstract "GRU文本生成概述"
-    GRU（Gated Recurrent Unit）是 LSTM 的简化版本，使用 更新门（Update Gate）和重置门（Reset Gate） 来控制信息流动，计算效率更高，且能在许多任务中取得与 LSTM 相似的效果，同时减少计算成本和参数量。
-    本实验依旧以AG News 数据为例，给定前100个单词作为输入，预测下一个单词，实现文本生成任务。
-
+    GRU（Gated Recurrent Unit）是 LSTM 的简化版本，使用更新门（Update Gate）和重置门（Reset Gate）来控制信息流动，计算效率更高，且能在许多任务中取得与 LSTM 相似的效果，同时减少计算成本和参数量。
+    本实验依旧以AG News 数据为例，给定前80个单词作为输入，预测下一个单词，实现文本生成任务。
 
 ![示例图片](pics/GRU.png)
 
@@ -560,15 +560,14 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 ### GRU 模型训练
 
-GRU 训练过程也与LSTM保持一致
-
+GRU 训练过程也与LSTM保持一致，同样在反向传播后加入梯度裁剪
 
 ### GRU 模型测试
 
-GRU 生成文本测试
+GRU 生成文本测试，同样复用 `sample_next_token`。
 
 ```python
-def generate_text(model, start_text, num_words=100, temperature=1.0):
+def generate_text(model, start_text, num_words=60, temperature=0.7, top_k=8):
     model.eval()
     words = tokenize(start_text)
     input_seq = numericalize(start_text).unsqueeze(0).to(device)
@@ -578,12 +577,8 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
         with torch.no_grad():
             output, hidden = model(input_seq, hidden)
 
-        # 计算 softmax，并应用温度系数
-        logits = output.squeeze(0) / temperature
-        probs = F.softmax(logits, dim=-1)
-
-        # 采样新词
-        predicted_id = torch.multinomial(probs, num_samples=1).item()
+        logits = output.squeeze(0)
+        predicted_id = sample_next_token(logits, temperature=temperature, top_k=top_k)
 
         next_word = vocab[predicted_id]
         words.append(next_word)
@@ -596,24 +591,22 @@ def generate_text(model, start_text, num_words=100, temperature=1.0):
 # 生成文本
 print("\nGenerated Text:")
 test_text = dataset["test"][1]["text"]
-# 取前 100 个单词作为前缀
-test_prefix = " ".join(test_text.split()[:100])
+# 取前 80 个单词作为前缀
+test_prefix = " ".join(test_text.split()[:context_len])
 
-# 让模型基于该前缀生成 100 个词
-generated_text = generate_text(model, test_prefix, 100, temperature=0.8)
+# 让模型基于该前缀生成 60 个词
+generated_text = generate_text(model, test_prefix, 60, temperature=0.7, top_k=8)
 print("\n🔹 模型生成的文本：\n")
 print(generated_text)
 ```
 
-借助RNN文本生成任务中计算困惑的函数，计算一下GRU在generated_text上的困惑度。
+借助 RNN 文本生成任务中计算困惑度的函数，在真实测试文本上计算一下 GRU 的困惑度，并同时报告 `evaluated_tokens`。
 
 !!! question "思考题"
-    思考题7：这三个困惑度可以直接比较吗？分析一下。  
+    思考题8：这三个困惑度只有在什么前提下才能直接比较？请检查当前实验是否满足这些前提。  
 
-    思考题8：GRU 只有两个门（更新门和重置门），相比 LSTM 少了一个门控单元，这样的设计有什么优缺点？ 
+    思考题9：在相同 `context_len` 和词表设定下，比较 RNN、LSTM、GRU 三者的参数量、训练时间和生成效果。你认为哪个模型最折中？为什么？ 
 
-    思考题9：在低算力设备（如手机）上，RNN、LSTM 和 GRU 哪个更适合部署？为什么？
-
-    思考题10：如果就是要使用RNN模型，原先的代码还有哪里可以优化的地方？请给出修改部分代码以及实验结果。
+    思考题10：如果只能改动一处代码来提升 RNN 模型，请给出你的修改、理由以及实验结果对比。
 
 
