@@ -1,4 +1,4 @@
-theme:
+﻿theme:
   name: material
   features:
     - navigation.tabs
@@ -58,24 +58,15 @@ nav:
 #      - 9.1 实验说明: "lab9/实验九介绍.md"
 #
 #
-#  - 课程大作业:
-#    - 答辩相关安排: "final/答辩相关安排.md"
-#    - 可选的课程大作业: "final/课程大作业.md"
-#    - 参数高效微调（PEFT）: "final/projects/NJUProject_PEFT.md"
-#    - 基于强化学习的小游戏实现: "final/projects/NJU_DL2025_project_RL.md"
-#    - 基于大语言模型的零样本文档排序: "final/projects/NJU_2025spring_ranking.md"
-#    - 多模态谣言检测: "final/projects/NJUProject_MultimodalRumorDetection.md"
-#    - LLM输出长度预测: "final/projects/Generation_Length_Prediction.md"
-#    - KV cache缓存策略探索: "final/projects/Caching-Strategy.md"
-#    - 大模型训练性能Profiling和优化: "final/projects/Profiling-optimization.md"
-#    - 大模型训练过程中的显存换出换入探索: "final/projects/TRAINING_SWAP.md"
-#    - MoE Offloading：混合专家模型推理显存换入换出: "final/projects/NJUProject_MoE_Offloading.md"
-#    - 投机解码的draft策略分析: "final/projects/NJUProject_Speculative_Decoding_Draft_Strategy.md"
-#    - 基于引导的大语言模型幻觉缓解: "final/projects/NJU_steer.md"
-#    - 智能工具调用代理系统: "final/projects/NJUProject_toolagent.md"
-#    - 轻量级多Agent协作系统: "final/projects/NJUProject_multiagent.md"
-#    - 基于扩散模型的个性化图像生成: "final/projects/NJU_DL2025_project_diffusion.md"
-
+  - 课程大作业:
+    - 答辩相关安排: "final/答辩相关安排.md"
+    - 可选的课程大作业（旧版）: "final/课程大作业.md"
+    - 2026 Projects Overview: "final/final_projects_2026.md"
+    - 2026 Projects:
+      - Latent Reasoning: "final/projects_2026/NJUProject_Latent_Reasoning.md"
+      - Test-Time Adaptation (TTA): "final/projects_2026/NJUProject_TTA.md"
+      - Visual Document Retrieval (VDR): "final/projects_2026/NJUProject_VDR.md"
+      - Speculative Decoding: "final/projects_2026/SpeculativeDecoding.md"
 
 
 markdown_extensions:
@@ -106,3 +97,5 @@ extra_javascript:  # 添加 MathJax 支持
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
