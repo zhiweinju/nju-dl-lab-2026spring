@@ -1,6 +1,6 @@
-## 基于视觉语言模型的零样本视觉文档检索(Visual Document Retrieval, VDR)
+# 零样本视觉文档检索
 
-本作业要求基于 **ColPali** 完成零样本（zero-shot）视觉文档检索任务。具体而言，给定一个文本查询（query），你需要在一批视觉丰富文档（visually rich documents）的页面中检索出最相关的页面。在提升检索效果的同时，还需要综合考虑索引构建、存储成本与推理开销之间的平衡。
+本作业要求基于视觉语言模型完成零样本视觉文档检索（Visual Document Retrieval, VDR）任务，并以 **ColPali** 为主要方法基础。具体而言，给定一个文本查询（query），你需要在一批视觉丰富文档（visually rich documents）的页面中检索出最相关的页面。在提升检索效果的同时，还需要综合考虑索引构建、存储成本与推理开销之间的平衡。
 
 ---
 
