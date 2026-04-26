@@ -170,3 +170,5 @@ memory_agent/
 - **不推荐**直接使用 LangChain 的 `ConversationBufferMemory` / `VectorStoreMemory` 完成作业——这会屏蔽你应该理解并设计的细节，严重影响"探索深度"评分。允许使用 LangChain / LlamaIndex 作为辅助组件（如 text splitter），但**核心记忆逻辑必须自己实现**。
 - **Prompt 工程**建议保留在代码中而不是写死在字符串里，方便消融时替换。
 - 鼓励在开题阶段就把 4 个 baseline 的骨架搭好，这样后续做探索时对照组是"免费"的。
+
+#### 如有疑问，请联系助教: qqf@smail.nju.edu.cn
