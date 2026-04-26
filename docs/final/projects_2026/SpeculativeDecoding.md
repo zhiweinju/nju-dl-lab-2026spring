@@ -186,7 +186,5 @@ Speculative Decoding 的一个典型流程如下：
 
 ## 五、注意事项
 
-截止日期：6月 日 23:59（UTC+8）。
-
 如有疑问，请联系 fuliangliu@smail.nju.edu.cn。
 
