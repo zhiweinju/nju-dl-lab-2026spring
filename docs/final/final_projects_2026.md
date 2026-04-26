@@ -18,18 +18,13 @@
     - 提交内容：答辩PPT、代码、论文（使用NeurIPS模板，正文8-9页，统一用英文，reference和appendix不限制页数）
     - 提交截止时间：待定
 
-## 报告提交要求
-- 使用 NeurIPS 2024 模板，最终提交 PDF 版本。  
-  [overleaf 上的模板](https://www.overleaf.com/latex/templates/neurips-2024/tpsbbrdqcmsh)
-- 正文建议 8-9 页，reference 和 appendix 不限制页数。
-
 ## 项目题目
 
 ### 题目
 
-1. [连续潜在空间推理](./projects_2026/NJUProject_Latent_Reasoning.md)
-2. [测试时自适应](./projects_2026/NJUProject_TTA.md)
-3. [腾讯-KDD CUP (生成式推荐)](./projects_2026/NJUProject_KDDCUP.md)
+1. [腾讯-KDD CUP (生成式推荐)](./projects_2026/NJUProject_KDDCUP.md)
+2. [连续潜在空间推理](./projects_2026/NJUProject_Latent_Reasoning.md)
+3. [测试时自适应](./projects_2026/NJUProject_TTA.md)
 4. [零样本视觉文档检索](./projects_2026/NJUProject_VDR.md)
 5. [推测解码与动态 Draft 分析](./projects_2026/SpeculativeDecoding.md)
 6. [多智能体强化学习](./projects_2026/marl.md)

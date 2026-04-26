@@ -8,27 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://zhiweinju.github.io/nju-dl-lab-2026spring/lab9/%E5%AE%9E%E9%AA%8C%E4%B9%9D%E4%BB%8B%E7%BB%8D/">
+        <link rel="canonical" href="https://zhiweinju.github.io/nju-dl-lab-2026spring/final/projects_2026/NJUProject_KDDCUP/">
       
       
+        <link rel="prev" href="../../final_projects_2026/">
+      
+      
+        <link rel="next" href="../NJUProject_Latent_Reasoning/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>实验九：图卷积神经网络（GCN） - 深度学习平台和应用（2026春）</title>
+        <title>腾讯-KDD CUP (生成式推荐) - 深度学习平台和应用（2026春）</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +57,9 @@
     
       <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC&display=swap">
     
-      <link rel="stylesheet" href="../../css/custom.css">
+      <link rel="stylesheet" href="../../../css/custom.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gcn" class="md-skip">
+        <a href="#-kdd-cup" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +98,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="深度学习平台和应用（2026春）" class="md-header__button md-logo" aria-label="深度学习平台和应用（2026春）" data-md-component="logo">
+    <a href="../../.." title="深度学习平台和应用（2026春）" class="md-header__button md-logo" aria-label="深度学习平台和应用（2026春）" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              实验九：图卷积神经网络（GCN）
+              腾讯-KDD CUP (生成式推荐)
             
           </span>
         </div>
@@ -181,7 +185,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -202,7 +206,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -222,7 +226,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab2/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab2/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -242,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab3/%E5%AE%9E%E9%AA%8C%E4%B8%89%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab3/%E5%AE%9E%E9%AA%8C%E4%B8%89%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -262,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab4/%E5%AE%9E%E9%AA%8C%E5%9B%9B%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab4/%E5%AE%9E%E9%AA%8C%E5%9B%9B%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -282,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab5/%E5%AE%9E%E9%AA%8C%E4%BA%94%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab5/%E5%AE%9E%E9%AA%8C%E4%BA%94%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -302,7 +306,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab6/%E5%AE%9E%E9%AA%8C%E5%85%AD%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab6/%E5%AE%9E%E9%AA%8C%E5%85%AD%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -322,7 +326,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lab7/%E5%AE%9E%E9%AA%8C%E4%B8%83%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        <a href="../../../lab7/%E5%AE%9E%E9%AA%8C%E4%B8%83%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
           
   
   
@@ -338,11 +342,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../final/final_projects_2026/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../final_projects_2026/" class="md-tabs__link">
           
   
   
@@ -382,7 +388,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="深度学习平台和应用（2026春）" class="md-nav__button md-logo" aria-label="深度学习平台和应用（2026春）" data-md-component="logo">
+    <a href="../../.." title="深度学习平台和应用（2026春）" class="md-nav__button md-logo" aria-label="深度学习平台和应用（2026春）" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -400,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -481,7 +487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -509,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
+      <a href="../../../lab1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
         
   
   
@@ -537,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+      <a href="../../../lab1/%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%BB%A3%E7%A0%81/" class="md-nav__link">
         
   
   
@@ -626,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab2/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab2/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -654,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab2/MINIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" class="md-nav__link">
+      <a href="../../../lab2/MINIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" class="md-nav__link">
         
   
   
@@ -682,7 +688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab2/%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%8E%A2%E7%B4%A2/" class="md-nav__link">
+      <a href="../../../lab2/%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%8E%A2%E7%B4%A2/" class="md-nav__link">
         
   
   
@@ -771,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab3/%E5%AE%9E%E9%AA%8C%E4%B8%89%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab3/%E5%AE%9E%E9%AA%8C%E4%B8%89%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -799,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab3/%E5%9B%BE%E5%83%8F%E5%8D%B7%E7%A7%AF/" class="md-nav__link">
+      <a href="../../../lab3/%E5%9B%BE%E5%83%8F%E5%8D%B7%E7%A7%AF/" class="md-nav__link">
         
   
   
@@ -827,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab3/CNN%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" class="md-nav__link">
+      <a href="../../../lab3/CNN%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" class="md-nav__link">
         
   
   
@@ -916,7 +922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab4/%E5%AE%9E%E9%AA%8C%E5%9B%9B%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab4/%E5%AE%9E%E9%AA%8C%E5%9B%9B%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -944,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab4/%E8%AF%8D%E5%B5%8C%E5%85%A5/" class="md-nav__link">
+      <a href="../../../lab4/%E8%AF%8D%E5%B5%8C%E5%85%A5/" class="md-nav__link">
         
   
   
@@ -972,7 +978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab4/RNN%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
+      <a href="../../../lab4/RNN%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
         
   
   
@@ -1061,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab5/%E5%AE%9E%E9%AA%8C%E4%BA%94%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab5/%E5%AE%9E%E9%AA%8C%E4%BA%94%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -1089,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab5/transformer/" class="md-nav__link">
+      <a href="../../../lab5/transformer/" class="md-nav__link">
         
   
   
@@ -1117,7 +1123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab5/%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+      <a href="../../../lab5/%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
         
   
   
@@ -1206,7 +1212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab6/%E5%AE%9E%E9%AA%8C%E5%85%AD%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab6/%E5%AE%9E%E9%AA%8C%E5%85%AD%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -1234,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%B8%80%EF%BC%9A%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%EF%BC%88GAN%EF%BC%89/" class="md-nav__link">
+      <a href="../../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%B8%80%EF%BC%9A%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%EF%BC%88GAN%EF%BC%89/" class="md-nav__link">
         
   
   
@@ -1262,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%BA%8C%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%8D%B7%E7%A7%AF%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%EF%BC%88DCGAN%EF%BC%89/" class="md-nav__link">
+      <a href="../../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%BA%8C%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%8D%B7%E7%A7%AF%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%EF%BC%88DCGAN%EF%BC%89/" class="md-nav__link">
         
   
   
@@ -1290,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%B8%89%EF%BC%9AWGAN/" class="md-nav__link">
+      <a href="../../../lab6/%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1%E4%B8%89%EF%BC%9AWGAN/" class="md-nav__link">
         
   
   
@@ -1379,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab7/%E5%AE%9E%E9%AA%8C%E4%B8%83%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab7/%E5%AE%9E%E9%AA%8C%E4%B8%83%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -1407,7 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lab7/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+      <a href="../../../lab7/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
         
   
   
@@ -1439,28 +1445,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
             
   
   
@@ -1478,7 +1487,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1496,7 +1505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/final_projects_2026/" class="md-nav__link">
+      <a href="../../final_projects_2026/" class="md-nav__link">
         
   
   
@@ -1521,28 +1530,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
             
   
   
@@ -1560,7 +1572,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1575,10 +1587,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_KDDCUP/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    腾讯-KDD CUP (生成式推荐)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1594,6 +1633,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、任务背景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、任务目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、任务内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、评分标准
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、参考资源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1606,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_Latent_Reasoning/" class="md-nav__link">
+      <a href="../NJUProject_Latent_Reasoning/" class="md-nav__link">
         
   
   
@@ -1634,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_TTA/" class="md-nav__link">
+      <a href="../NJUProject_TTA/" class="md-nav__link">
         
   
   
@@ -1662,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_VDR/" class="md-nav__link">
+      <a href="../NJUProject_VDR/" class="md-nav__link">
         
   
   
@@ -1690,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/SpeculativeDecoding/" class="md-nav__link">
+      <a href="../SpeculativeDecoding/" class="md-nav__link">
         
   
   
@@ -1718,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/marl/" class="md-nav__link">
+      <a href="../marl/" class="md-nav__link">
         
   
   
@@ -1746,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_Diffusion_Acceleration/" class="md-nav__link">
+      <a href="../NJUProject_Diffusion_Acceleration/" class="md-nav__link">
         
   
   
@@ -1774,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../final/projects_2026/NJUProject_Inversion/" class="md-nav__link">
+      <a href="../NJUProject_Inversion/" class="md-nav__link">
         
   
   
@@ -1840,18 +1965,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        开始之前
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gnn" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GNN学习
+        一、任务背景
       
     </span>
   </a>
@@ -1862,27 +1976,10 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        实验任务
+        二、任务目标
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="实验任务">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gcnipynb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        详见：GCN.ipynb
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1890,7 +1987,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        实验提交
+        三、任务内容
       
     </span>
   </a>
@@ -1901,7 +1998,29 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提交说明
+        四、评分标准
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、参考资源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、注意事项
       
     </span>
   </a>
@@ -1925,33 +2044,85 @@
 
 
 
-<h1 id="gcn">实验九：图卷积神经网络（GCN）<a class="headerlink" href="#gcn" title="Permanent link">&para;</a></h1>
-<h2 id="_1">开始之前<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>我们在本次实验中使用jupyter Notebook进行实验，
-请参考<a href="../../lab1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/#jupyter-notebook">Jupyter Notebook使用</a>，
-按照文档中详细步骤进行操作，完成Jupyter Notebook的配置。</p>
-<h2 id="gnn">GNN学习<a class="headerlink" href="#gnn" title="Permanent link">&para;</a></h2>
-<p>参考 <a href="https://web.stanford.edu/class/cs224w/">cs224w</a> </p>
-<h2 id="_2">实验任务<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="gcnipynb"><a class="md-button" href="../GCN.ipynb">详见：GCN.ipynb</a><a class="headerlink" href="#gcnipynb" title="Permanent link">&para;</a></h3>
-<h2 id="_3">实验提交<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>实验完成后，请提交以下材料：</p>
-<ol>
-<li>运行成功的Jupyter Notebook文件</li>
-<li>一份PDF报告，报告内容<strong>包括但不限于</strong>：<ol>
-<li>任务中的填充代码和相应实验结果</li>
-<li>实验心得与体会</li>
-</ol>
+<h1 id="-kdd-cup">腾讯-KDD CUP（生成式推荐）<a class="headerlink" href="#-kdd-cup" title="Permanent link">&para;</a></h1>
+<h2 id="_1">一、任务背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>推荐系统驱动着大规模内容平台（信息流、短视频等）和数字广告（点击率/转化率预测等），直接影响用户体验、参与度和收入。在巨大流量和严格延迟限制下，这些系统每天做出数十亿次实时决策，支撑着千亿美元级别的数字广告市场。过去二十年间，推荐系统的研究沿着两大分支发展：特征交互模型，专注于建模高维多场分类特征与上下文特征；以及序列模型，通过基于嵌入的检索系统和Transformer风格的排序模型捕捉用户行为的时序动态。尽管这两类范式都取得了显著成功，但它们很大程度上是独立演进的。这种割裂在工业系统中造成了结构性瓶颈：跨范式交互浅层化、优化目标不一致、可扩展性受限、硬件与工程复杂度不断上升。随着序列长度和模型规模持续增长，这种碎片化的架构变得越来越低效。近年来，一些研究工作开始尝试弥合这两个历史上相互分离的分支。为进一步加速这一方向的发展，腾讯发起了面向大规模推荐的序列建模与特征交互融合”挑战赛。</p>
+<h2 id="_2">二、任务目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>访问大赛官网了解任务详情：
+  👉 <a href="https://algo.qq.com/">https://algo.qq.com/</a></p>
 </li>
-</ol>
-<h2 id="_4">提交说明<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ol>
-<li>本次提交的内容为: 实验九要求提交的内容，具体要求请参见实验网站（https://zhiweinju.github.io/nju-dl-lab-2025spring/）</li>
-<li>提交的报告文件请以PDF文件格式上传到selearning网站，上传文件的文件命名格式为: 学号_姓名_实验九.pdf，比如：123456789_张三_实验九.pdf</li>
-<li>其他提交文件（如 运行成功的Jupyter Notebook文件），请加上前缀: 学号_姓名_lab9_，比如: 123456789_张三_lab9_GCN.ipynb</li>
-<li>本次提交的截止时间为 5月15日23:59:59</li>
-<li>对于迟交的处理: 迟交一周以内，折扣系数为0.8，迟交超过一周，折扣系数为0.6，超过一个月停止接收提交，尚未提交者本次作业计0分</li>
-</ol>
+<li>
+<p>掌握 <strong>生成式推荐（Generative Recommendation）</strong> 的基础框架</p>
+</li>
+<li>
+<p>基于官方提供的 <strong>Baseline 代码进行优化与改进</strong></p>
+</li>
+</ul>
+<hr />
+<h2 id="_3">三、任务内容<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>学习并复现主流生成式推荐模型源码</li>
+<li>
+<p>理解不同模型在以下方面的设计：</p>
+</li>
+<li>
+<p>序列建模</p>
+</li>
+<li>特征交互</li>
+<li>生成式建模方式</li>
+<li>
+<p>在 Baseline 基础上进行优化，包括但不限于：</p>
+</li>
+<li>
+<p>模型结构改进</p>
+</li>
+<li>训练策略优化</li>
+<li>推理效率提升</li>
+</ul>
+<hr />
+<h2 id="_4">四、评分标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>评分项</strong></th>
+<th><strong>分值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>榜单排名</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>创新点</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>报告规范性与表达清晰度</td>
+<td>30%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">五、参考资源<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>InterFormer</strong>
+  <a href="https://arxiv.org/abs/2209.07511">https://arxiv.org/abs/2209.07511</a></p>
+</li>
+<li>
+<p><strong>OneTrans</strong>
+  <a href="https://arxiv.org/abs/2308.06038">https://arxiv.org/abs/2308.06038</a></p>
+</li>
+<li>
+<p><strong>HyFormer</strong>
+  <a href="https://arxiv.org/abs/2409.19375">https://arxiv.org/abs/2409.19375</a></p>
+</li>
+</ul>
+<h2 id="_6">六、注意事项<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>如有疑问，请联系 za@smail.nju.edu.cn。</p>
 
 
 
@@ -2007,12 +2178,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "toc.follow", "content.code.copy", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "toc.follow", "content.code.copy", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

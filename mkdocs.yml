@@ -63,9 +63,9 @@ nav:
   - 课程项目:
     - 课程项目总览: "final/final_projects_2026.md"
     - 项目题目:
+      - 腾讯-KDD CUP (生成式推荐): "final/projects_2026/NJUProject_KDDCUP.md"
       - 连续潜在空间推理: "final/projects_2026/NJUProject_Latent_Reasoning.md"
       - 测试时自适应: "final/projects_2026/NJUProject_TTA.md"
-      - 腾讯-KDD CUP (生成式推荐): "final/projects_2026/NJUProject_KDDCUP.md"
       - 零样本视觉文档检索: "final/projects_2026/NJUProject_VDR.md"
       - 推测解码与动态 Draft 分析: "final/projects_2026/SpeculativeDecoding.md"
       - 多智能体强化学习: "final/projects_2026/marl.md"
