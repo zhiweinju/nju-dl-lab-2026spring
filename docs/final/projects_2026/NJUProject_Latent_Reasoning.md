@@ -9,7 +9,7 @@
 
 在此基础上，后续工作进一步从训练方式和压缩方式上扩展 latent reasoning。例如，CODI 使用 teacher–student self-distillation，将显式 CoT 的推理能力蒸馏到连续空间；CoLaR 则进一步探讨了将多个 reasoning token 压缩到单个 latent 表征中，并研究压缩率与效率之间的平衡。
 
-本次课程大作业将围绕这一方向展开，要求同学们围绕 latent reasoning 方法完成一个 **可分析、可比较、可讨论** 的课程项目。
+本次课程项目将围绕这一方向展开，要求同学们围绕 latent reasoning 方法完成一个 **可分析、可比较、可讨论** 的课程项目。
 
 ### 1.2 任务目标
 本项目要求同学们基于 **GPT-2** 模型，在 **GSM8K** 数据集上实现并分析连续潜在推理方法，重点关注以下问题：
@@ -249,3 +249,5 @@ Coconut 在实验中也分析了新生成 token 数，以衡量 reasoning effici
 4. 若参考了其他文献、代码库或开源实现，也请在报告中列出对应参考资料。
 
 祝大家探索顺利。
+
+如有疑问，联系助教罗翔：`luoxiang@smail.com`，或者在 QQ 群里联系。

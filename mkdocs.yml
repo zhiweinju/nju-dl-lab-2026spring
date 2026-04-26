@@ -58,17 +58,17 @@ nav:
 #      - 9.1 实验说明: "lab9/实验九介绍.md"
 #
 #
-  - 课程大作业:
+  - 课程项目:
     - 答辩相关安排: "final/答辩相关安排.md"
-    - 可选的课程大作业（2026）: "final/final_projects_2026.md"
+    - 2026 课程项目总览: "final/final_projects_2026.md"
     - 2026 项目题目:
-      - 基于连续潜在空间的语言模型推理（Latent Reasoning）: "final/projects_2026/NJUProject_Latent_Reasoning.md"
+      - 连续潜在空间推理（Latent Reasoning）: "final/projects_2026/NJUProject_Latent_Reasoning.md"
       - 测试时自适应（TTA）: "final/projects_2026/NJUProject_TTA.md"
-      - 基于视觉语言模型的零样本视觉文档检索(Visual Document Retrieval, VDR): "final/projects_2026/NJUProject_VDR.md"
-      - 推测解码的实现与动态 Draft 深度分析: "final/projects_2026/SpeculativeDecoding.md"
-      - 多智能体强化学习: "final/projects_2026/marl.md"
-      - 扩散模型加速: "final/projects_2026/NJUProject_Diffusion_Acceleration.md"
-      - 基于扩散模型的反演与图像编辑: "final/projects_2026/NJUProject_Inversion.md"
+      - 零样本视觉文档检索（VDR）: "final/projects_2026/NJUProject_VDR.md"
+      - 推测解码与动态 Draft 分析: "final/projects_2026/SpeculativeDecoding.md"
+      - 多智能体强化学习（MARL）: "final/projects_2026/marl.md"
+      - 扩散模型加速采样与离散化: "final/projects_2026/NJUProject_Diffusion_Acceleration.md"
+      - 扩散模型反演与图像编辑: "final/projects_2026/NJUProject_Inversion.md"
       - 长期记忆对话 Agent: "final/projects_2026/Agent_Memory/NJUProject_Agent_Memory.md"
 
 
