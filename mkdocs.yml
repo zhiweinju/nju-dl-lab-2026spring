@@ -71,7 +71,7 @@ nav:
       - 多智能体强化学习: "final/projects_2026/marl.md"
       - 扩散模型加速采样与离散化: "final/projects_2026/NJUProject_Diffusion_Acceleration.md"
       - 扩散模型反演与图像编辑: "final/projects_2026/NJUProject_Inversion.md"
-
+      - 端侧大模型推理框架: "final/projects_2026/NJUProject_OnDeviceInference.md"
 
 markdown_extensions:
   - toc:
