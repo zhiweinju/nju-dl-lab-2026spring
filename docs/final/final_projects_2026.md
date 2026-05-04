@@ -1,6 +1,6 @@
 # 课程项目
 
-同学们可以挑选以下题目开展课程项目，也可以自己提出题目，但是需要经过老师的审核。  
+同学们可以挑选以下题目开展课程项目，也可以自己提出题目，但是需要经过老师的审核。
 点击就可以跳转对应项目的详细说明。
 
 ## 组队规则
@@ -30,3 +30,4 @@
 6. [多智能体强化学习](./projects_2026/marl.md)
 7. [扩散模型加速采样与离散化](./projects_2026/NJUProject_Diffusion_Acceleration.md)
 8. [扩散模型反演与图像编辑](./projects_2026/NJUProject_Inversion.md)
+9. [端侧大模型推理框架](./projects_2026/NJUProject_OnDeviceInference.md)
