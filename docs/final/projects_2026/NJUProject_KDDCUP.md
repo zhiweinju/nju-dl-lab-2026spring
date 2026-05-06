@@ -56,7 +56,7 @@
   [https://arxiv.org/abs/2409.19375](https://arxiv.org/abs/2409.19375)
 
 ## 六、注意事项
-如有疑问，请联系 za@smail.nju.edu.cn。
+如有疑问，请联系助教周翱：za@smail.nju.edu.cn。
 
 
 

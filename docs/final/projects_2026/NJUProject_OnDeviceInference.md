@@ -193,7 +193,7 @@
 
 **关于 "自己实现" 的边界**：本项目的教学目标是让你理解大模型推理的完整流程与 offloading 系统的设计，因此 2.1 中对 `transformers` 的 `nn.Module` 有严格禁用。阅读 `transformers` 的源码作为学习参考是鼓励的，但**最终提交的代码中不得 import 任何 `transformers` 中的模型 `nn.Module`**。
 
-如有疑问，请联系 fuliangliu@smail.nju.edu.cn。
+如有疑问，请联系助教刘复良：fuliangliu@smail.nju.edu.cn。
 
 ### 参考资料
 

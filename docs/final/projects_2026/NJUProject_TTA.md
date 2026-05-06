@@ -35,7 +35,7 @@
 
     * 使用ETTh / EXCHANGE / Weather 等时序基准数据集（至少三个)
     * 基于Transformer / Linear 为架构的时间序列模型（至少两个)
-      
+
 
 ---
 
@@ -127,6 +127,6 @@
 * SHOT: [https://arxiv.org/abs/2002.08546](https://arxiv.org/abs/2002.08546)
 * BEM:[https://arxiv.org/abs/2502.03777](https://arxiv.org/abs/2502.03777)
 
-#### 如有疑问，请联系助教:za@smail.nju.edu.cn
+#### 如有疑问，请联系助教周翱:za@smail.nju.edu.cn
 
 

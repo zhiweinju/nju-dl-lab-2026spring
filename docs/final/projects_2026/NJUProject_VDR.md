@@ -14,13 +14,13 @@
 
 本作业主要采用 **ColPali-based page retrieval** 的基本流程，包括以下三个阶段：
 
-1. **文档预处理与索引构建**  
+1. **文档预处理与索引构建**
    将 PDF 按页转换为图像，使用多模态模型对每一页进行编码，得到页面表示，并将其保存到本地索引中。
 
-2. **查询编码**  
+2. **查询编码**
    将文本查询输入模型，得到查询表示。
 
-3. **相似度计算与排序**  
+3. **相似度计算与排序**
    计算查询与所有页面表示之间的相似度，返回 Top-k 相关页面，并使用检索指标进行评测。
 
 ---
@@ -52,7 +52,7 @@
 
 提交内容包括：
 
-1. **完整代码文件**  
+1. **完整代码文件**
    将所有代码文件打包提交，内容应包含预处理、索引构建、检索与评测代码。
 
 2. **实验报告（PDF）**
@@ -61,16 +61,16 @@
 
 ## 五、注意事项
 
-1. **参考文献**  
+1. **参考文献**
    如果你在实验和报告中参考了已发表的文献，请在报告中列出相关文献。
 
 2. 可以使用提供的代码与数据进行实现。相关资料如下：
 
-   **ColPali：**  
-   *ColPali: Efficient Document Retrieval with Vision Language Models*  
+   **ColPali：**
+   *ColPali: Efficient Document Retrieval with Vision Language Models*
    https://huggingface.co/vidore/colpali-v1.3
 
-   **MMLongBench：**  
+   **MMLongBench：**
    https://huggingface.co/datasets/ZhaoweiWang/MMLongBench
 
-3. 如有疑问，请联系助教:lqr@smail.nju.edu.cn。
+3. 如有疑问，请联系助教李奇儒:lqr@smail.nju.edu.cn。

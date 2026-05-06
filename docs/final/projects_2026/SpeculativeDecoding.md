@@ -4,11 +4,11 @@
 
 ### 1.1 背景
 
-自回归（Autoregressive, AR）解码是当前大语言模型最常见的生成方式。  
+自回归（Autoregressive, AR）解码是当前大语言模型最常见的生成方式。
 在 AR 解码中，模型每次只生成 1 个 token，因此当模型参数规模较大时，推理延迟较高、吞吐量受限。
 
-[Speculative Decoding（推测解码）](https://dl.acm.org/doi/10.5555/3618408.3619203)是一种用于加速大语言模型推理的方法。它的基本思想是：  
-使用一个较小、较快的 draft model 先生成若干候选 token，再由较大的 target model 对这些 token 进行验证。  
+[Speculative Decoding（推测解码）](https://dl.acm.org/doi/10.5555/3618408.3619203)是一种用于加速大语言模型推理的方法。它的基本思想是：
+使用一个较小、较快的 draft model 先生成若干候选 token，再由较大的 target model 对这些 token 进行验证。
 如果 draft model 提出的 token 与 target model 的分布足够一致，则可以一次接受多个 token，从而减少 target model 的调用轮数，提高整体生成速度。
 
 训练型 draft model 是这一方向的进一步发展。[EAGLE-3](https://arxiv.org/abs/2503.01840)不再沿用早期方法中的特征预测约束，而是改为直接 token prediction，并引入 [multi-layer feature fusion 与 training-time test](https://www.zhihu.com/question/591646269/answer/2005360155936707357)，以提升训练出来的 draft model 与 target model 的匹配程度。
@@ -28,8 +28,8 @@ Speculative Decoding 的一个典型流程如下：
 - 接受长度（acceptance length）
 - 整体吞吐量（tokens/s）
 
-如果 draft 太短，则每轮带来的加速有限；  
-如果 draft 太长，则被 target model 拒绝的概率可能升高，反而降低收益。  
+如果 draft 太短，则每轮带来的加速有限；
+如果 draft 太长，则被 target model 拒绝的概率可能升高，反而降低收益。
 
 ---
 
@@ -125,19 +125,19 @@ Speculative Decoding 的一个典型流程如下：
 
 至少统计以下指标：
 
-- **接受率（acceptance rate）**  
+- **接受率（acceptance rate）**
   被成功验证并接受的 draft token 数量 / 总 draft token 数量
 
-- **接受长度（acceptance length）**  
-  每轮中被成功接受的 draft token 数量  
+- **接受长度（acceptance length）**
+  每轮中被成功接受的 draft token 数量
   报告中建议同时给出：
   - 总接受 token 数
   - 平均每轮接受长度
 
-- **吞吐量（tokens/s）**  
+- **吞吐量（tokens/s）**
   生成 token 总数 / 总生成时间
 
-- **加速比（speedup）**  
+- **加速比（speedup）**
   speculative decoding 吞吐量 / AR 吞吐量
 
 ### 3.2 必做实验二：动态 K 策略比较
@@ -186,5 +186,5 @@ Speculative Decoding 的一个典型流程如下：
 
 ## 五、注意事项
 
-如有疑问，请联系 fuliangliu@smail.nju.edu.cn。
+如有疑问，请联系助教刘复良：fuliangliu@smail.nju.edu.cn。
 
