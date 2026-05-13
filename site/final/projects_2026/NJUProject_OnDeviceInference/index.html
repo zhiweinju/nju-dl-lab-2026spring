@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://zhiweinju.github.io/nju-dl-lab-2026spring/final/projects_2026/SpeculativeDecoding/">
+        <link rel="canonical" href="https://zhiweinju.github.io/nju-dl-lab-2026spring/final/projects_2026/NJUProject_OnDeviceInference/">
       
       
-        <link rel="prev" href="../NJUProject_VDR/">
+        <link rel="prev" href="../SpeculativeDecoding/">
       
       
-        <link rel="next" href="../NJUProject_OnDeviceInference/">
+        <link rel="next" href="../marl/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>推测解码与动态 Draft 分析 - 深度学习平台和应用（2026春）</title>
+        <title>端侧推理框架 - 深度学习平台和应用（2026春）</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#draft" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              推测解码与动态 Draft 分析
+              端侧推理框架
             
           </span>
         </div>
@@ -1973,6 +1973,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../SpeculativeDecoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推测解码与动态 Draft 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1992,7 +2020,7 @@
   <span class="md-ellipsis">
     
   
-    推测解码与动态 Draft 分析
+    端侧推理框架
   
 
     
@@ -2010,7 +2038,7 @@
   <span class="md-ellipsis">
     
   
-    推测解码与动态 Draft 分析
+    端侧推理框架
   
 
     
@@ -2036,7 +2064,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         一、任务说明
@@ -2059,60 +2087,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#12-offloading" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 推测解码
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        二、方法设计规范
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="二、方法设计规范">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-speculative-decoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 Speculative Decoding 基础实现（必做）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-draft" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 动态 Draft 深度分析（必做）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 选做内容（可选）
+        1.2 端侧推理与 Offloading
       
     </span>
   </a>
@@ -2128,6 +2106,184 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
+        二、方法设计规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、方法设计规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 最小推理框架实现（必选）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 最小推理框架实现（必选）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        硬性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你至少需要自己实现的组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本阶段实验要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Offloading 推理（必选，本项目核心）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Offloading 推理（必选，本项目核心）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本阶段实验要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 可选优化（选做，可叠加加分）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 可选优化（选做，可叠加加分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做一：更大的 Dense 模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做二：权重量化以减小传输量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-cache-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做三：KV Cache Offloading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moe-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做四：MoE 模型 Offloading（高阶挑战）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         三、实验要求
       
     </span>
@@ -2137,10 +2293,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-k" class="md-nav__link">
+  <a href="#31" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 必做实验一：基础实现与固定 K 比较
+        3.1 评估指标
       
     </span>
   </a>
@@ -2148,10 +2304,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-k" class="md-nav__link">
+  <a href="#32" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 必做实验二：动态 K 策略比较
+        3.2 必做实验
       
     </span>
   </a>
@@ -2159,21 +2315,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-draft-model" class="md-nav__link">
+  <a href="#33" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3 选做实验：训练型 Draft Model 比较
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4 实验设置要求
+        3.3 实验配置统一要求
       
     </span>
   </a>
@@ -2186,7 +2331,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         四、提交内容
@@ -2225,7 +2370,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         五、注意事项
@@ -2233,40 +2378,29 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="五、注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考资料
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../NJUProject_OnDeviceInference/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    端侧推理框架
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2398,7 +2532,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         一、任务说明
@@ -2421,60 +2555,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#12-offloading" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 推测解码
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        二、方法设计规范
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="二、方法设计规范">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-speculative-decoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 Speculative Decoding 基础实现（必做）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-draft" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 动态 Draft 深度分析（必做）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 选做内容（可选）
+        1.2 端侧推理与 Offloading
       
     </span>
   </a>
@@ -2490,6 +2574,184 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
+        二、方法设计规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、方法设计规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 最小推理框架实现（必选）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 最小推理框架实现（必选）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        硬性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你至少需要自己实现的组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本阶段实验要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Offloading 推理（必选，本项目核心）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Offloading 推理（必选，本项目核心）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本阶段实验要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 可选优化（选做，可叠加加分）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 可选优化（选做，可叠加加分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做一：更大的 Dense 模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做二：权重量化以减小传输量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-cache-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做三：KV Cache Offloading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moe-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选做四：MoE 模型 Offloading（高阶挑战）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         三、实验要求
       
     </span>
@@ -2499,10 +2761,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-k" class="md-nav__link">
+  <a href="#31" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 必做实验一：基础实现与固定 K 比较
+        3.1 评估指标
       
     </span>
   </a>
@@ -2510,10 +2772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-k" class="md-nav__link">
+  <a href="#32" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 必做实验二：动态 K 策略比较
+        3.2 必做实验
       
     </span>
   </a>
@@ -2521,21 +2783,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-draft-model" class="md-nav__link">
+  <a href="#33" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3 选做实验：训练型 Draft Model 比较
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4 实验设置要求
+        3.3 实验配置统一要求
       
     </span>
   </a>
@@ -2548,7 +2799,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         四、提交内容
@@ -2587,13 +2838,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         五、注意事项
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="五、注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考资料
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2614,172 +2882,206 @@
 
 
 
-<h1 id="draft">推测解码与动态 Draft 分析<a class="headerlink" href="#draft" title="Permanent link">&para;</a></h1>
-<h2 id="_1">一、任务说明<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="_1">端侧大模型推理框架<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">一、任务说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="11">1.1 背景<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
-<p>自回归（Autoregressive, AR）解码是当前大语言模型最常见的生成方式。
-在 AR 解码中，模型每次只生成 1 个 token，因此当模型参数规模较大时，推理延迟较高、吞吐量受限。</p>
-<p><a href="https://dl.acm.org/doi/10.5555/3618408.3619203">Speculative Decoding（推测解码）</a>是一种用于加速大语言模型推理的方法。它的基本思想是：
-使用一个较小、较快的 draft model 先生成若干候选 token，再由较大的 target model 对这些 token 进行验证。
-如果 draft model 提出的 token 与 target model 的分布足够一致，则可以一次接受多个 token，从而减少 target model 的调用轮数，提高整体生成速度。</p>
-<p>训练型 draft model 是这一方向的进一步发展。<a href="https://arxiv.org/abs/2503.01840">EAGLE-3</a>不再沿用早期方法中的特征预测约束，而是改为直接 token prediction，并引入 <a href="https://www.zhihu.com/question/591646269/answer/2005360155936707357">multi-layer feature fusion 与 training-time test</a>，以提升训练出来的 draft model 与 target model 的匹配程度。</p>
-<h3 id="12">1.2 推测解码<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
-<p>Speculative Decoding 的一个典型流程如下：</p>
+<p>近年来，端侧（on-device）大模型推理成为一个重要方向：以 llama.cpp、Ollama、LM Studio、MLC-LLM 为代表的项目，让用户能够在自己的消费级硬件（如笔记本、游戏显卡）上运行原本需要数据中心 GPU 才能跑起来的大模型。与云端部署相比，端侧推理有更好的隐私性、离线可用性和零边际成本，但也面临一个核心矛盾——<strong>消费级显卡显存有限（通常 8~16 GB），而用户希望运行的模型参数规模往往在 7B~14B 甚至更大</strong>，仅权重就放不进显存。</p>
+<p>解决这一矛盾的主流思路是 <strong>权重 offloading（卸载）</strong>：模型权重常驻 CPU 内存（或磁盘），在推理时按需分批次加载到 GPU 显存中参与计算，计算完成后释放或缓存。由于 Transformer 具有良好的分层结构，每一层的权重可以被独立加载、独立计算，因此非常适合进行"逐层 offloading"。进一步，通过 CUDA 多流（stream）机制，可以把"下一层权重的搬运"与"当前层的计算"重叠起来，从而把 PCIe 传输的开销尽量隐藏在计算之后。</p>
+<p>本项目希望你从零实现一个最小但可用的端侧大模型推理框架，在 NVIDIA RTX 3070（8 GB 显存）这样的消费级显卡上跑通原本装不下的模型（Qwen3-8B），并与业界主流推理框架（vLLM / SGLang）进行性能对比。</p>
+<h3 id="12-offloading">1.2 端侧推理与 Offloading<a class="headerlink" href="#12-offloading" title="Permanent link">&para;</a></h3>
+<p>一个典型的 Offloading 推理系统至少需要考虑以下几件事：</p>
 <ol>
-<li>给定输入前缀，target model 先基于当前前缀得到下一位置的分布；</li>
-<li>draft model 基于当前前缀继续提出若干个候选 token；</li>
-<li>target model 对这些候选 token 进行验证；</li>
-<li>按照接受/拒绝规则，接受一部分 token，若发生拒绝则进行修正采样；</li>
-<li>重复以上过程，直到生成结束。</li>
+<li><strong>权重驻留位置</strong>：权重完整保存在 CPU pinned memory 中（这是 H2D 传输的前置条件）；GPU 上只保留若干"正在被使用"或"即将被使用"的层。</li>
+<li><strong>加载调度</strong>：在进入第 i 层计算之前，该层权重必须已经在 GPU 上；计算完成后，该层权重可以被释放或保留在 GPU 上作为缓存。</li>
+<li><strong>计算-传输重叠</strong>：使用独立于默认计算流的 CUDA stream 来做 H2D 拷贝，使得第 i+1 层的权重搬运可以和第 i 层的计算并行进行。</li>
+<li><strong>KV Cache 管理</strong>：与训练不同，推理时每一步 decode 都会向 KV Cache 追加新的 token，KV Cache 的体积会随着生成长度线性增长，需要在 offloading 策略中一并考虑。</li>
 </ol>
-<p>在该过程中，推测深度（即每轮 draft 的 token 数量）会影响：
-- 接受率（acceptance rate）
-- 接受长度（acceptance length）
-- 整体吞吐量（tokens/s）</p>
-<p>如果 draft 太短，则每轮带来的加速有限；
-如果 draft 太长，则被 target model 拒绝的概率可能升高，反而降低收益。</p>
+<p>本项目将以此为主线，引导你从一个 "只能跑小模型的最小框架" 出发，逐步扩展到 "能在 8 GB 显存上跑通 Qwen3-8B 的完整 offloading 推理系统"。</p>
 <hr />
-<h2 id="_2">二、方法设计规范<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="21-speculative-decoding">2.1 Speculative Decoding 基础实现（必做）<a class="headerlink" href="#21-speculative-decoding" title="Permanent link">&para;</a></h3>
-<p>你需要基于 PyTorch 与 Transformers，自行实现一个可运行的 speculative decoding 推理流程，要求至少包含以下部分：</p>
+<h2 id="_3">二、方法设计规范<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 最小推理框架实现（必选）<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>你需要基于 <strong>PyTorch</strong> 从零实现一个最小的大模型推理框架，并在一个<strong>单卡可装下</strong>的模型上跑通。</p>
+<h4 id="_4">硬性约束<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <ul>
-<li>target model 与 draft model 的加载</li>
-<li>AR baseline 解码</li>
-<li>speculative decoding 解码</li>
-<li>KV cache 的使用</li>
-<li>接受/拒绝逻辑</li>
-<li>统计实验指标</li>
+<li><strong>仅允许使用 PyTorch 生态</strong>，包括：</li>
+<li><code>torch</code>、<code>torch.nn</code>（仅限 <code>Linear</code>、<code>Embedding</code>、<code>ModuleList</code> 等基础模块）</li>
+<li><code>torch.nn.functional</code>（允许使用 <code>scaled_dot_product_attention</code>、<code>silu</code>、<code>rms_norm</code> 等）</li>
+<li><code>safetensors</code> / <code>torch</code> 原生权重加载接口</li>
+<li><strong>禁止使用 <code>transformers</code> 库中任何模型相关的 <code>nn.Module</code></strong>，特别是 <code>Qwen3ForCausalLM</code>、<code>Qwen3Model</code>、<code>Qwen3DecoderLayer</code>、<code>Qwen3Attention</code> 等；<code>transformers</code> 仅可用于以下三个目的：</li>
+<li>下载模型权重文件（<code>snapshot_download</code> / <code>AutoModel.from_pretrained</code> 下载后仅使用其 <code>.safetensors</code> 文件）</li>
+<li>加载 tokenizer（<code>AutoTokenizer</code>）</li>
+<li>作为正确性对比的<strong>参考实现</strong>（不得作为最终产物的一部分）</li>
+<li><strong>禁止直接调用 <code>model.generate()</code></strong>；推理主循环必须自己实现。</li>
 </ul>
-<p>建议你按照如下思路实现：</p>
+<h4 id="_5">你至少需要自己实现的组件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>RMSNorm</li>
+<li>Rotary Position Embedding（RoPE）的构造与应用</li>
+<li>QKV 投影与 Grouped-Query Attention（GQA）</li>
+<li>提示：Qwen3 使用 GQA，Q 头数与 KV 头数不同，可以使用 <code>F.scaled_dot_product_attention(..., enable_gqa=True)</code>（PyTorch ≥ 2.5），也可以手动 <code>repeat_interleave</code> 扩展 KV 头</li>
+<li>SwiGLU 结构的 MLP（<code>gate_proj</code> / <code>up_proj</code> / <code>down_proj</code> + SiLU）</li>
+<li>Decoder Layer 的组装（含残差连接与两处 LayerNorm）</li>
+<li>权重加载：从 HuggingFace 的 <code>.safetensors</code> 文件读出权重，映射到你自己的模块参数</li>
+<li>KV Cache 的数据结构与拼接/追加逻辑</li>
+<li>完整的推理主循环：prefill 阶段 + decode 阶段</li>
+</ul>
+<h4 id="_6">本阶段实验要求<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>目标模型</strong>：Qwen3-1.7B（FP16 / BF16 精度）</li>
+<li><strong>正确性验证</strong>：给定相同的 prompt 和采样参数（greedy，<code>do_sample=False</code>），你的实现生成的前若干 token 必须与 HuggingFace <code>transformers</code> 的参考实现<strong>逐 token 对齐</strong></li>
+<li><strong>性能对比</strong>：在相同 prompt 集上，对比</li>
+<li>你自己的实现</li>
+<li><strong>vLLM 或 SGLang 中任选一个</strong>工业级框架</li>
+</ul>
+<p>两者的 <strong>prefill 延迟</strong>、<strong>decode tokens/s</strong>、<strong>TTFT（Time To First Token）</strong>；并在报告中分析性能差距的可能来源（例如 kernel 融合、PagedAttention、Python 侧调度开销等，不要求自己补齐，只要求分析）</p>
+<h3 id="22-offloading">2.2 Offloading 推理（必选，本项目核心）<a class="headerlink" href="#22-offloading" title="Permanent link">&para;</a></h3>
+<p>在 2.1 基础上扩展你的框架，使其能够在 <strong>8 GB 显存的 RTX 3070</strong> 上跑通<strong>单卡装不下</strong>的模型。</p>
+<h4 id="_7">目标<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>目标模型</strong>：Qwen3-8B（FP16，权重约 16 GB，3070 无法整体装入显存）</li>
+<li><strong>必须实现</strong>：逐层权重 offloading + 基于独立 CUDA stream 的权重预取（prefetch）</li>
+</ul>
+<h4 id="_8">实现要求<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
 <ol>
-<li>对输入前缀进行 prefill；</li>
-<li>draft model 每轮提出 K 个候选 token；</li>
-<li>target model 对这 K 个 token 进行验证；</li>
-<li>根据接受规则决定接受多少个 token；</li>
-<li>若中途发生拒绝，则进行修正采样；</li>
-<li>重复直到生成结束。</li>
+<li><strong>权重驻留</strong>：所有层权重在启动时加载到 <strong>CPU pinned memory</strong>（<code>torch.Tensor.pin_memory()</code>），这是高效 H2D 拷贝的前置条件；embedding 和 lm_head 可以常驻 GPU，也可以参与 offloading，由你自行决定并在报告中说明。</li>
+<li><strong>显存预算</strong>：暴露一个命令行参数 <code>--gpu-layer-budget N</code>（或等价的显存预算参数），表示 GPU 上最多保留 N 层权重。预算 ≥ 总层数时退化为"全部常驻 GPU"；预算越小，offloading 越激进。</li>
+<li><strong>三种实现</strong>（必须在同一代码仓库中都能跑）：</li>
+<li><strong>(a) 朴素同步 offload</strong>：进入第 i 层时同步从 CPU 拷贝权重到 GPU，计算完释放；没有预取，没有多流</li>
+<li><strong>(b) Prefetch 优化</strong>：使用独立于默认计算流的 CUDA stream，在第 i 层计算的同时，异步把第 i+1 层权重从 CPU 预取到 GPU；注意流间同步（<code>stream.wait_event()</code> / <code>torch.cuda.Event</code>），确保第 i+1 层计算开始前其权重已经就绪</li>
+<li><strong>(c) 工业框架对照</strong>：使用 vLLM 的 <code>--cpu-offload-gb</code> 参数（或 SGLang 对应功能）在同一模型上跑，作为参照</li>
 </ol>
-<p>你需要完成以下实验：</p>
+<h4 id="_9">本阶段实验要求<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <ul>
-<li>固定 draft-target 模型：</li>
-<li>draft：Qwen3-0.6B</li>
-<li>target：Qwen3-1.7B</li>
-<li>比较不同固定推测深度：</li>
-<li>例如 <code>K = 1, 2, 4, 8</code></li>
-<li>acceptance rate</li>
-<li>acceptance length</li>
-<li>与普通 AR 解码比较以下指标：</li>
-<li>tokens/s</li>
-<li>speedup</li>
+<li>在 Qwen3-8B 上跑通上述三种实现，固定 prompt 集、固定 <code>max_new_tokens=256</code>、固定 greedy 采样</li>
+<li>报告 <strong>prefill latency</strong>、<strong>decode tokens/s</strong>、<strong>TTFT</strong>、<strong>峰值显存占用</strong> 四项指标</li>
+<li><strong>显存预算扫描</strong>：固定 prefetch 实现，扫描 <code>--gpu-layer-budget</code> ∈ {1, 2, 4, 8, 16, 32}（或你自选的合理集合），绘制"显存预算 vs decode tokens/s"曲线，分析拐点</li>
 </ul>
-<h3 id="22-draft">2.2 动态 Draft 深度分析（必做）<a class="headerlink" href="#22-draft" title="Permanent link">&para;</a></h3>
-<p>固定 draft-target 模型后，继续探索动态 draft 深度策略。</p>
-<p>你需要设计一个动态策略，使得每一轮 draft model 不再固定提出 K 个 token，而是根据当前状态动态决定是否提前停止。</p>
-<p>可选思路包括但不限于：</p>
+<h3 id="23">2.3 可选优化（选做，可叠加加分）<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>在完成 2.1 和 2.2 的基础上，以下选做项可任选若干完成：</p>
+<h4 id="dense">选做一：更大的 Dense 模型<a class="headerlink" href="#dense" title="Permanent link">&para;</a></h4>
 <ul>
-<li>当 draft model 当前 token 的最大概率低于某个阈值时，提前停止</li>
-<li>当 top-1 与 top-2 的概率差距低于某个阈值时，提前停止</li>
-<li>当分布熵（entropy）高于某个阈值时，提前停止</li>
+<li><strong>目标模型</strong>：Qwen3-14B（FP16，权重约 28 GB）</li>
+<li>直接复用 2.2 的 offloading 框架跑通</li>
+<li>报告显存预算、tokens/s 与 8B 的对比，分析"单卡显存不变、模型变大"对各项指标的影响</li>
 </ul>
-<p>你需要比较：</p>
+<h4 id="_10">选做二：权重量化以减小传输量<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <ul>
-<li>固定 K 策略</li>
-<li>动态 K 策略</li>
+<li>使用 INT8 或 INT4 量化权重（允许调用 <code>bitsandbytes</code>、GPTQ、AWQ 等已有工具，不要求自己实现量化算法）</li>
+<li>核心观察点：<strong>量化后 H2D 传输量下降，offloading 的 decode tokens/s 是否改善？</strong> 传输时间与计算时间的比值如何变化？</li>
+<li>在报告中分析量化对端侧 offloading 场景的价值</li>
 </ul>
-<h3 id="23">2.3 选做内容（可选）<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
-<p>在完成必做部分的基础上，你可以进一步探索 <strong>训练专用的 draft model</strong> 。</p>
-<p>本题中，固定：</p>
+<h4 id="kv-cache-offloading">选做三：KV Cache Offloading<a class="headerlink" href="#kv-cache-offloading" title="Permanent link">&para;</a></h4>
 <ul>
-<li>target model：<strong>Qwen3-1.7B</strong></li>
+<li>面向长 context 场景（建议输入 prompt ≥ 4K tokens，生成 ≥ 1K tokens）</li>
+<li>把不活跃的 KV Cache 块换出到 CPU，需要时再换回</li>
+<li>设计驱逐策略（LRU / FIFO / 按 layer / 按 token 段 等）</li>
+<li>报告长 context 下的 decode tokens/s 与峰值显存</li>
 </ul>
-<p>选做要求为：</p>
+<h4 id="moe-offloading">选做四：MoE 模型 Offloading（高阶挑战）<a class="headerlink" href="#moe-offloading" title="Permanent link">&para;</a></h4>
 <ul>
-<li>使用 <strong>EAGLE-3</strong> 方法，为 Qwen3-1.7B 训练一个专用的 draft model</li>
-<li>将训练得到的 draft model 用于 speculative decoding 推理</li>
-<li>与必做部分中直接使用的同系列小模型 <strong>Qwen3-0.6B</strong> 作为 draft model 的结果进行比较</li>
+<li><strong>目标模型</strong>：Qwen3-30B-A3B（MoE，128 个 expert / 每 token 激活 8 个）</li>
+<li>与 Dense 模型的 offloading 不同，MoE 的 offloading 调度单位是 <strong>expert</strong> 而非 <strong>layer</strong>：每个 token 只激活少量 expert，应当只把被激活的 expert 加载到 GPU</li>
+<li>至少实现：</li>
+<li>Expert 粒度的 on-demand 加载</li>
+<li>一种 expert 缓存策略（例如 LRU / LFU / 按历史激活频次）</li>
+<li>报告：不同 batch size、不同 expert 缓存容量下的 decode tokens/s</li>
+<li><strong>说明</strong>：本选做工作量接近 2.2 本身，但能获得相应较高的加分</li>
 </ul>
-<p>并回答以下问题：</p>
-<ul>
-<li>专门为 target model 训练得到的 draft model，是否比直接使用同系列小模型更适合作为 draft？</li>
-</ul>
-<p>如果你完成了该部分，请在报告中额外说明：</p>
-<ul>
-<li>EAGLE-3 的训练配置</li>
-<li>使用的数据集或样本来源</li>
-<li>训练资源与训练时长</li>
-<li>训练后 draft model 的推理接入方式</li>
-<li>与 Qwen3-0.6B 对比时的实验设置是否保持一致</li>
-</ul>
-<h2 id="_3">三、实验要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="31-k">3.1 必做实验一：基础实现与固定 K 比较<a class="headerlink" href="#31-k" title="Permanent link">&para;</a></h3>
-<p>你需要完成以下内容：</p>
-<ul>
-<li>实现 AR baseline</li>
-<li>实现 speculative decoding</li>
-<li>在不同 K 下分别运行实验</li>
-<li>对比 AR 与 speculative decoding 的表现</li>
-</ul>
-<p>至少统计以下指标：</p>
-<ul>
-<li>
-<p><strong>接受率（acceptance rate）</strong>
-  被成功验证并接受的 draft token 数量 / 总 draft token 数量</p>
-</li>
-<li>
-<p><strong>接受长度（acceptance length）</strong>
-  每轮中被成功接受的 draft token 数量
-  报告中建议同时给出：</p>
-</li>
-<li>总接受 token 数</li>
-<li>
-<p>平均每轮接受长度</p>
-</li>
-<li>
-<p><strong>吞吐量（tokens/s）</strong>
-  生成 token 总数 / 总生成时间</p>
-</li>
-<li>
-<p><strong>加速比（speedup）</strong>
-  speculative decoding 吞吐量 / AR 吞吐量</p>
-</li>
-</ul>
-<h3 id="32-k">3.2 必做实验二：动态 K 策略比较<a class="headerlink" href="#32-k" title="Permanent link">&para;</a></h3>
-<p>你需要至少实现一种动态 draft 深度策略，并与固定 K 策略比较。</p>
-<h3 id="33-draft-model">3.3 选做实验：训练型 Draft Model 比较<a class="headerlink" href="#33-draft-model" title="Permanent link">&para;</a></h3>
-<p>如果完成选做部分，你需要补充展示：</p>
-<ul>
-<li>EAGLE-3 训练得到的 draft model 与 Qwen3-0.6B 的对比结果</li>
-<li>对实验现象的分析</li>
-</ul>
-<h3 id="34">3.4 实验设置要求<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
-<p>为保证结果可比，请统一：</p>
-<ul>
-<li>相同的 prompt 集</li>
-<li>相同的 <code>max_new_tokens</code></li>
-<li>相同的采样设置（如 greedy / temperature / top-p）</li>
-<li>相同的硬件环境</li>
-<li>相同的计时方式</li>
-</ul>
-<p>如你使用了额外的工程优化，请在报告中明确说明。</p>
 <hr />
-<h2 id="_4">四、提交内容<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_11">三、实验要求<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 评估指标<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prefill Latency</strong></td>
+<td>从输入 prompt 到生成第一个 token 的时间</td>
+</tr>
+<tr>
+<td><strong>TTFT</strong></td>
+<td>Time To First Token，与 Prefill Latency 定义一致</td>
+</tr>
+<tr>
+<td><strong>Decode Tokens/s</strong></td>
+<td>生成阶段的稳态吞吐量，(生成 token 数 − 1) / (总生成时间 − TTFT)</td>
+</tr>
+<tr>
+<td><strong>Speedup</strong></td>
+<td>对照 baseline（朴素同步 offload）的 decode tokens/s 加速比</td>
+</tr>
+<tr>
+<td><strong>峰值显存</strong></td>
+<td><code>torch.cuda.max_memory_allocated()</code>，单位 GB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 必做实验<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>正确性验证（2.1）</strong>：自己实现的 Qwen3-1.7B 与 HuggingFace 参考实现在 greedy 下逐 token 对齐</li>
+<li><strong>Baseline 对比（2.1）</strong>：Qwen3-1.7B 上，自己的实现 vs vLLM/SGLang 的 prefill latency、decode tokens/s、TTFT 对比，并分析差距来源</li>
+<li><strong>Offloading 三方对比（2.2）</strong>：Qwen3-8B 上，朴素 offload / prefetch / vLLM-offload 三种实现的指标对比</li>
+<li><strong>显存预算扫描（2.2）</strong>：Qwen3-8B 上，在 prefetch 实现下扫描 GPU 层数预算，画出 tokens/s 曲线</li>
+</ol>
+<h3 id="33">3.3 实验配置统一要求<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>为保证结果可比，所有实验必须：</p>
+<ul>
+<li>使用相同的 prompt 集（建议从 MT-Bench、Alpaca-Eval 等公开集合中选 10~20 条长短混合的 prompt）</li>
+<li>使用相同的 <code>max_new_tokens</code>（建议 256）</li>
+<li>使用相同的采样设置（建议 greedy，<code>do_sample=False</code>）</li>
+<li>使用相同的硬件（单张 RTX 3070 8GB）与软件环境（固定 PyTorch / CUDA 版本）</li>
+<li>使用一致的计时方式（GPU 计时请使用 <code>torch.cuda.synchronize()</code> 或 <code>torch.cuda.Event</code>）</li>
+</ul>
+<hr />
+<h2 id="_12">四、提交内容<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <h3 id="41">4.1 代码<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <ul>
-<li>代码结构不做要求</li>
-<li>要给出能够运行的python环境（requirement.txt）</li>
-<li>要给出能成功运行代码的脚本</li>
+<li>代码结构不做严格要求，但建议包含以下模块：</li>
+<li>模型实现（Qwen3 架构的 PyTorch 重写）</li>
+<li>权重加载</li>
+<li>Offloading 调度器（朴素版 + prefetch 版）</li>
+<li>推理主循环（prefill + decode）</li>
+<li>评测脚本</li>
+<li>要给出能够运行的 python 环境（<code>requirements.txt</code>）</li>
+<li>要给出能成功运行各实验的脚本（例如 <code>run_baseline.sh</code>、<code>run_offload_naive.sh</code>、<code>run_offload_prefetch.sh</code>、<code>run_vllm_compare.sh</code> 等）</li>
 </ul>
 <h3 id="42">4.2 报告<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
-<p>报告至少应包含以下内容：</p>
+<p>报告至少应包含：</p>
 <ul>
-<li>详细描述你的实现方案。</li>
-<li>展示不同配置下的实验结果。建议使用表格和图形展示结果。</li>
-<li>对实验现象进行分析。</li>
-<li>如参考了论文、博客、开源实现或官方文档，请列出参考文献。</li>
+<li><strong>实现方法</strong>：详细描述你的推理框架架构、offloading 调度策略、CUDA stream 的使用方式，以及遇到的关键设计决策</li>
+<li><strong>实验结果</strong>：</li>
+<li>Qwen3-1.7B 正确性验证结果</li>
+<li>Qwen3-1.7B 与 vLLM/SGLang 的性能对比表</li>
+<li>Qwen3-8B 三种 offloading 实现的性能对比表</li>
+<li>显存预算扫描曲线</li>
+<li>（选做部分的相应结果）</li>
+<li><strong>结果分析</strong>：</li>
+<li>自己的实现与工业框架的差距来源分析</li>
+<li>Prefetch 相对朴素实现的加速来源分析（建议结合 Nsight Systems 或 <code>torch.profiler</code> 的 timeline 截图）</li>
+<li>显存预算扫描曲线的拐点解释</li>
+<li>实验过程中遇到的问题与解决过程</li>
 </ul>
 <hr />
-<h2 id="_5">五、注意事项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_13">五、注意事项<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p><strong>参考文献</strong>：如果你在实验和报告中参考了已发表的文献、博客、开源实现或官方文档，请在报告末尾列出。</p>
+<p><strong>硬件说明</strong>：本题以 RTX 3070 (8GB) 为目标硬件，每个小组均配备一张 RTX 3070，请以该硬件为基准完成所有必做实验。</p>
+<p><strong>关于 "自己实现" 的边界</strong>：本项目的教学目标是让你理解大模型推理的完整流程与 offloading 系统的设计，因此 2.1 中对 <code>transformers</code> 的 <code>nn.Module</code> 有严格禁用。阅读 <code>transformers</code> 的源码作为学习参考是鼓励的，但<strong>最终提交的代码中不得 import 任何 <code>transformers</code> 中的模型 <code>nn.Module</code></strong>。</p>
 <p>如有疑问，请联系助教刘复良：fuliangliu@smail.nju.edu.cn。</p>
+<h3 id="_14">参考资料<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[1] Qwen3 Technical Report. https://qwenlm.github.io/</li>
+<li>[2] vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention. https://github.com/vllm-project/vllm</li>
+<li>[3] SGLang. https://github.com/sgl-project/sglang</li>
+<li>[4] llama.cpp. https://github.com/ggerganov/llama.cpp</li>
+<li>[5] Eliseev, A., &amp; Mazur, D. (2023). Fast Inference of Mixture-of-Experts Language Models with Offloading. https://github.com/dvmazur/mixtral-offloading</li>
+<li>[6] Kamahori, K., et al. (2025). Fiddler: CPU-GPU Orchestration for Fast Inference of Mixture-of-Experts Models. ICLR 2025. https://github.com/efeslab/fiddler</li>
+<li>[7] Shazeer, N. (2019). Fast Transformer Decoding: One Write-Head is All You Need.</li>
+<li>[8] Ainslie, J., et al. (2023). GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints.</li>
+</ul>
 
 
 
