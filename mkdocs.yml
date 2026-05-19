@@ -60,10 +60,10 @@ nav:
      - 9.2 实验任务：多模态情感分析: "lab8_v1/多模态情感分析.md"
      - 9.3 实验代码下载: "lab8_v1/实验九代码下载.md"
   - 实验十:
-     - 9.1 实验说明: "lab10/实验十介绍.md"
-     - 9.2 实验任务一：多臂老虎机算法: "lab10/MAB.md"
-     - 9.3 实验任务二：Actor-Critic: "lab10/Actor-Critic.md"
-     - 9.4 实验任务三：PPO算法: "lab10/PPO.md"
+     - 10.1 实验说明: "lab10/实验十介绍.md"
+     - 10.2 实验任务一：多臂老虎机算法: "lab10/MAB.md"
+     - 10.3 实验任务二：Actor-Critic: "lab10/Actor-Critic.md"
+     - 10.4 实验任务三：PPO算法: "lab10/PPO.md"
      
 #
 #
