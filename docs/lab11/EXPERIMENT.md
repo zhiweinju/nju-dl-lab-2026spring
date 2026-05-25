@@ -146,9 +146,6 @@ diffusion_lab/
 └── EXPERIMENT.md                  # 本说明文档
 ```
 
-> 模板由助教统一上传至课程平台 / GitHub 仓库(路径以课程通知为准),例如:  
-> `https://<course-repo>/diffusion_lab/diffusion_lab_template.ipynb`
-
 模板中:
 - **已给出**:数据加载、UNet 架构、训练循环骨架、可视化绘图函数;
 - **需补全**:噪声调度、`q_sample`、训练损失、`ddpm_sample`、(可选)`ddim_sample`,以及若干思考题的文字回答。
