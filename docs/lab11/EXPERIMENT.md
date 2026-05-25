@@ -140,12 +140,6 @@ pip install torch torchvision numpy matplotlib tqdm scikit-learn jupyter
 
 [下载代码模板文件](https://cdn.jsdelivr.net/gh/zhiweinju/nju-dl-lab-2026spring@main/docs/lab11/diffusion_lab_template.ipynb){ .md-button}
 
-```
-diffusion_lab/
-├── diffusion_lab_template.ipynb   # 你需要完成的实验 Notebook
-└── EXPERIMENT.md                  # 本说明文档
-```
-
 模板中:
 
 - **已给出**:数据加载、UNet 架构、训练循环骨架、可视化绘图函数;
