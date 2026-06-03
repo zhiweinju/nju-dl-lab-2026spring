@@ -90,7 +90,7 @@ pip install torch torchvision numpy matplotlib tqdm scikit-learn jupyter
 要求:
 - 实现 `train_loss(model, x0)`,计算 $\mathcal{L}_{\text{simple}}$;
 - 实现 `ddpm_sample(model, n_samples)`,按 §2.3 公式从噪声采样;
-- 用模板提供的小型 MLP(约 1 万参数)训练;
+- 用模板提供的小型 MLP(约 1 万参数)训练,**预计 CPU 上 1–3 分钟**;
 - 绘制训练数据 vs. 生成样本的散点图,验证模型确实学到了目标分布;
 - **思考题**:把 $T$ 从 1000 改为 50,生成质量如何变化?为什么?
 
@@ -100,6 +100,7 @@ pip install torch torchvision numpy matplotlib tqdm scikit-learn jupyter
 
 要求:
 - 使用模板提供的小型 UNet(约 30 万参数,已实现);
+- 实现训练循环,**预计 CPU 上 30–60 分钟,15 epoch 内可见效果**;
 - 用训练好的模型采样 64 张 16×16 图像,以 8×8 网格展示;
 - 给出训练 loss 曲线;
 - **思考题**:报告中至少包含一组生成图像,并讨论失败/成功的样本。
